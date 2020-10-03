@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Carousel from 'react-multi-carousel';
+import { shade } from 'polished';
 
 export const Container = styled.div``;
 
@@ -94,4 +95,105 @@ export const SpotLightCarouselOne = styled(Carousel)`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+export const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000;
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 12px;
+
+    h3 {
+      font-weight: 500;
+      color: yellow;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      margin-bottom: 3px;
+
+      :hover {
+        border-bottom: 1px solid #fff;
+      }
+    }
+
+    p {
+      color: #fff;
+    }
+
+    svg {
+      color: #fff;
+    }
+  }
+
+  .company {
+    margin: 30px 0;
+  }
+
+  .account {
+    section {
+      a {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .support {
+    p#email {
+      margin: 10px 0;
+    }
+  }
+
+  .social {
+    section {
+      display: flex;
+      flex-direction: row;
+
+      svg {
+        margin: 0 8px;
+      }
+    }
+  }
+
+  .news {
+    p + p {
+      margin-bottom: 15px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+
+      input {
+        background: none;
+        padding: 5px;
+        border: 0;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background: yellow;
+        border: 0;
+        padding: 10px;
+        color: #000;
+        border-radius: 5px;
+
+        &:hover {
+          background: ${shade(0.2, 'yellow')};
+        }
+      }
+    }
+  }
 `;
