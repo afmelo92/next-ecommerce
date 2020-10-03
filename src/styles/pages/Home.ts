@@ -196,4 +196,41 @@ export const Footer = styled.footer`
       }
     }
   }
+
+  @media (min-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    section.container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin: 50px auto;
+      justify-content: center;
+    }
+
+    .section {
+      margin: 0 20px;
+    }
+
+    .account {
+      h3 {
+        margin-bottom: 10px;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+
+        a {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .social {
+      margin-top: 30px;
+    }
+  }
 `;

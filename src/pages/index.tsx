@@ -506,52 +506,56 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
         />
       </SpotLightCarouselOne>
       <Footer>
-        <div className="section company">
-          <h3>INSTITUCIONAL</h3>
-          <Link href="/">Home</Link>
-          <Link href="/">Sobre</Link>
-          <Link href="/">Dúvidas</Link>
-          <Link href="/">Contato</Link>
-        </div>
-        <div className="section account">
-          <h3>MINHA CONTA</h3>
-          <section>
-            <Link href="/">Meus dados</Link>
-            <Link href="/">Meus pedidos</Link>
-            <Link href="/">Lista de desejos</Link>
-          </section>
-        </div>
-        <div className="section support">
-          <h3>ATENDIMENTO</h3>
-          <p>(11) 94778-5076</p>
-          <p id="email">contato@oficialnaotemcomo.com.br</p>
+        <section className="container">
+          <div className="section company">
+            <h3>INSTITUCIONAL</h3>
+            <Link href="/">Home</Link>
+            <Link href="/">Sobre</Link>
+            <Link href="/">Dúvidas</Link>
+            <Link href="/">Contato</Link>
+          </div>
+          <div className="section account">
+            <h3>MINHA CONTA</h3>
+            <section>
+              <Link href="/">Meus dados</Link>
+              <Link href="/">Meus pedidos</Link>
+              <Link href="/">Lista de desejos</Link>
+            </section>
+          </div>
+          <div className="section support">
+            <h3>ATENDIMENTO</h3>
+            <p>(11) 94778-5076</p>
+            <p id="email">contato@oficialnaotemcomo.com.br</p>
 
-          <p>Rua General Osório, 62 - cj 71</p>
-          <p>Vila Bocaina - Mauá | SP</p>
-          <p>CEP: 09310-050 </p>
-        </div>
-        <div className="section payment">
-          <h3>FORMAS DE PAGAMENTO</h3>
-          <img src="/cards.png" alt="cards" />
-        </div>
-        <div className="section social">
-          <h3>SIGA-NOS</h3>
-          <section>
-            <FaFacebook size={20} />
-            <FaInstagram size={20} />
-            <FaTwitter size={20} />
+            <p>Rua General Osório, 62 - cj 71</p>
+            <p>Vila Bocaina - Mauá | SP</p>
+            <p>CEP: 09310-050 </p>
+          </div>
+          <section className="union">
+            <div className="section payment">
+              <h3>FORMAS DE PAGAMENTO</h3>
+              <img src="/cards.png" alt="cards" />
+            </div>
+            <div className="section social">
+              <h3>SIGA-NOS</h3>
+              <section>
+                <FaFacebook size={20} />
+                <FaInstagram size={20} />
+                <FaTwitter size={20} />
+              </section>
+            </div>
           </section>
-        </div>
-        <div className="section news">
-          <h3>NEWSLETTER</h3>
-          <p>Faça seu cadastro para receber nossas dicas</p>
-          <p>novidades e promoções.</p>
-          <form action="section user-form">
-            <input type="text" name="name" id="name" placeholder="Seu nome" />
-            <input type="text" name="email" id="email" placeholder="E-mail" />
-            <button type="button">Cadastrar</button>
-          </form>
-        </div>
+          <div className="section news">
+            <h3>NEWSLETTER</h3>
+            <p>Faça seu cadastro para receber nossas dicas</p>
+            <p>novidades e promoções.</p>
+            <form action="section user-form">
+              <input type="text" name="name" id="name" placeholder="Seu nome" />
+              <input type="text" name="email" id="email" placeholder="E-mail" />
+              <button type="button">Cadastrar</button>
+            </form>
+          </div>
+        </section>
       </Footer>
     </Container>
   );
