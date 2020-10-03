@@ -1,8 +1,9 @@
 import React from 'react';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '../styles/globals';
-import theme from '../styles/theme';
+import theme from 'styles/theme';
+import GlobalStyle from 'styles/globals';
+import 'react-multi-carousel/lib/styles.css';
 
 // import { Container } from './styles';
 
