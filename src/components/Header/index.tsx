@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <Main>
         <div className="container">
           <button type="button" className="hamburger">
-            <GiHamburgerMenu size={30} />
+            <GiHamburgerMenu size={30} color="#000" />
           </button>
           <section className="social-row">
             <a href="/">
