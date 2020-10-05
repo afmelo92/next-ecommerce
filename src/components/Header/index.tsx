@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+import React, { useCallback, useRef } from 'react';
 import {
   FaFacebook,
   FaInstagram,
@@ -9,8 +11,17 @@ import {
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FiShoppingCart } from 'react-icons/fi';
 import { Container, Main } from './styles';
+import Menu from '../Menu';
 
 const Header: React.FC = () => {
+  const vestRef = useRef(null);
+  const accRef = useRef(null);
+
+  const handleSubMenu = useCallback(refName => {
+    refName.current.style.display === 'none'
+      ? (refName.current.style.display = 'block')
+      : (refName.current.style.display = 'none');
+  }, []);
   return (
     <Container>
       <Main>
@@ -64,6 +75,9 @@ const Header: React.FC = () => {
             <FaSearch size={20} />
           </button>
         </form>
+      </section>
+      <section className="menu-row">
+        <Menu />
       </section>
     </Container>
   );

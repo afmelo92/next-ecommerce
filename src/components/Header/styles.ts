@@ -30,9 +30,21 @@ export const Container = styled.div`
     }
   }
 
+  .options-row {
+    display: none;
+  }
+
   @media (min-width: 900px) {
     .search-row {
       display: none;
+    }
+
+    .menu-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      height: 40px;
     }
   }
 `;
@@ -123,7 +135,7 @@ export const Main = styled.div`
 
       img {
         width: 120px;
-        margin-left: -220px;
+        margin-left: -250px;
       }
     }
   }
