@@ -32,7 +32,7 @@ export const Container = styled.div`
 */
 
   .submenu-container {
-    height: 200px;
+    min-height: 300px;
     min-width: 200px;
     position: absolute;
     overflow: hidden;

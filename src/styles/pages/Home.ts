@@ -190,7 +190,9 @@ export const Top3 = styled.section`
 
       max-width: 500px;
       max-height: 500px;
+    }
 
+    a {
       :nth-child(2) {
         margin: 0 10px;
       }

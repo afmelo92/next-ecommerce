@@ -30,7 +30,7 @@ export const Container = styled.div`
     }
   }
 
-  .options-row {
+  .menu-row {
     display: none;
   }
 

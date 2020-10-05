@@ -208,24 +208,24 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
 
       <Top3>
         <div>
-          <Link href="/">
+          <a href="/">
             <img
               src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-1497214986.jpg"
               alt="vestuario"
             />
-          </Link>
-          <Link href="/">
+          </a>
+          <a href="/">
             <img
               src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2204818397.jpg"
               alt="acessorios"
             />
-          </Link>
-          <Link href="/">
+          </a>
+          <a href="/">
             <img
               src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-4159844946.jpg"
               alt="multimarcas"
             />
-          </Link>
+          </a>
         </div>
       </Top3>
       <SpotLight>
