@@ -5,20 +5,44 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 // import Prismic from 'prismic-javascript';
 // import {Document} from 'prismic-javascript/types/documents';
 import Link from 'next/link';
+import CarouselItem from '@/components/CarouselItem';
 // import PrismicDOM from 'prismic-dom';
 
-// import { Container } from './styles';
+import { Container } from '@/styles/pages/Categories';
+import Loading from '@/components/Loading';
 
-interface CategoryProps {
-  category: Document;
-  products: Document[];
+interface IProduct {
+  id: string;
+  source: string;
+  title: string;
+  price: number;
+  slug: string;
 }
 
-const Category: React.FC<CategoryProps> = ({ products, category }) => {
+interface CategoryProps {
+  products: IProduct[];
+}
+
+const Category: React.FC<CategoryProps> = ({ products }) => {
   const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   return (
-    <div>
+    <Container>
       <h1>{router.query.slug}</h1>
+
+      {products.map(product => (
+        <CarouselItem
+          key={product.id}
+          source={product.source}
+          name={product.title}
+          price={product.price}
+          slug={product.slug}
+        />
+      ))}
       {/* <h1>{PrismicDOM.RichText.asText(category.data.title)}</h1>
 
       <ul>
@@ -32,44 +56,56 @@ const Category: React.FC<CategoryProps> = ({ products, category }) => {
           );
         })}
       </ul> */}
-    </div>
+    </Container>
   );
 };
 
 export default Category;
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const categories = await client().query([
-//     Prismic.Predicates.at('document.type', 'category'),
-//   ]);
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const categories = await client().query([
+  //   Prismic.Predicates.at('document.type', 'category'),
+  // ]);
 
-//   const paths = categories.results.map(category => {
-//     return {
-//       params: { slug: category.uid },
-//     };
-//   });
+  // const paths = categories.results.map(category => {
+  //   return {
+  //     params: { slug: category.uid },
+  //   };
+  // });
 
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// };
+  const response = await fetch(`${process.env.API_URL}/categories`);
+  const categories = await response.json();
 
-// export const getStaticProps: GetStaticProps<CategoryProps> = async context => {
-//   const { slug } = context.params;
+  const paths = categories.map(category => {
+    return {
+      params: { slug: category.id },
+    };
+  });
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
-//   const category = await client().getByUID('category', String(slug), {});
+export const getStaticProps: GetStaticProps<CategoryProps> = async context => {
+  const { slug } = context.params;
 
-//   const products = await client().query([
-//     Prismic.Predicates.at('document.type', 'product'),
-//     Prismic.Predicates.at('my.product.category', category.id),
-//   ]);
+  // const category = await client().getByUID('category', String(slug), {});
 
-//   return {
-//     props: {
-//       category,
-//       products: products.results,
-//     },
-//     revalidate: 60,
-//   };
-// };
+  // const products = await client().query([
+  //   Prismic.Predicates.at('document.type', 'product'),
+  //   Prismic.Predicates.at('my.product.category', category.id),
+  // ]);
+
+  const response = await fetch(
+    `${process.env.API_URL}/products?category_id=${slug}`,
+  );
+  const products = await response.json();
+
+  return {
+    props: {
+      products,
+    },
+    revalidate: 60,
+  };
+};

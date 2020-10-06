@@ -87,6 +87,7 @@ export const Main = styled.div`
 
     svg {
       color: #fff;
+      cursor: pointer;
 
       &:hover {
         color: ${darken(0.2, '#fff')};
@@ -101,8 +102,8 @@ export const Main = styled.div`
         flex-direction: row;
         align-items: center;
 
-        a {
-          margin-right: 10px;
+        svg + svg {
+          margin-left: 10px;
         }
 
         input {

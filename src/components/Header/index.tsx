@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FiShoppingCart } from 'react-icons/fi';
+import Link from 'next/link';
 import { Container, Main } from './styles';
 import Menu from '../Menu';
 
@@ -22,15 +23,15 @@ const Header: React.FC = () => {
             <GiHamburgerMenu size={30} color="#000" />
           </button>
           <section className="social-row">
-            <a href="/">
+            <Link href="https://facebook.com/ntcnaotemcomo">
               <FaFacebook size={20} />
-            </a>
-            <a href="/">
+            </Link>
+            <Link href="https://instagram.com/oficialnaotemcomo">
               <FaInstagram size={20} />
-            </a>
-            <a href="/">
+            </Link>
+            <Link href="https://twitter.com/naotemcomo_NTC">
               <FaTwitter size={20} />
-            </a>
+            </Link>
 
             <form>
               <input

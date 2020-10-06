@@ -520,9 +520,9 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
     deviceType = 'desktop';
   }
 
-  const bannersResponse = await fetch('http://localhost:3333/banners');
-  const topResponse = await fetch('http://localhost:3333/top');
-  const productsResponse = await fetch('http://localhost:3333/products');
+  const bannersResponse = await fetch(`${process.env.API_URL}/banners`);
+  const topResponse = await fetch(`${process.env.API_URL}/top`);
+  const productsResponse = await fetch(`${process.env.API_URL}/products`);
   const products = await productsResponse.json();
   const banners = await bannersResponse.json();
   const top = await topResponse.json();
@@ -547,7 +547,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
 //   //   Prismic.Predicates.at('my.product.category', category.id)
 //   // ]);
 
-//   const response = await fetch('http://localhost:3333/banners');
+//   const response = await fetch('process.env.API_URL/banners');
 //   const banners = await response.json();
 
 //   return {
