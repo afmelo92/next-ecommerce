@@ -1,7 +1,9 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-expressions */
 import React, { useCallback, useRef } from 'react';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import {
   Container,
@@ -29,9 +31,12 @@ import { slide as Menu } from 'react-burger-menu';
 
 interface HomeProps {
   deviceType?: string;
+  products?: any[];
+  banners?: any[];
+  top?: any[];
 }
 
-const Home: NextPage<HomeProps> = ({ deviceType }) => {
+const Home: NextPage<HomeProps> = ({ deviceType, products, banners, top }) => {
   const vestRef = useRef(null);
   const accRef = useRef(null);
 
@@ -168,23 +173,16 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {/* Here i have to call cms to get initial images */}
-        <img
-          src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-3840895049.jpg"
-          alt="banner-1"
-        />
-        <img
-          src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-3890828086.jpg"
-          alt="banner-2"
-        />
-        <img
-          src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-1990314993.jpg"
-          alt="banner-3"
-        />
-        <img
-          src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2135565350.jpg"
-          alt="banner-4"
-        />
+        {banners.map(banner => (
+          <Link
+            key={banner.id}
+            href={`/catalog/categories/${encodeURIComponent(
+              banner.description,
+            )}`}
+          >
+            <img src={banner.source} alt={banner.description} />
+          </Link>
+        ))}
       </MainCarrousel>
 
       <Secure>
@@ -208,24 +206,16 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
 
       <Top3>
         <div>
-          <a href="/">
-            <img
-              src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-1497214986.jpg"
-              alt="vestuario"
-            />
-          </a>
-          <a href="/">
-            <img
-              src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2204818397.jpg"
-              alt="acessorios"
-            />
-          </a>
-          <a href="/">
-            <img
-              src="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-4159844946.jpg"
-              alt="multimarcas"
-            />
-          </a>
+          {top.map(item => (
+            <Link
+              key={item.id}
+              href={`/catalog/categories/${encodeURIComponent(
+                item.description,
+              )}`}
+            >
+              <img src={item.source} alt={item.description} />
+            </Link>
+          ))}
         </div>
       </Top3>
       <SpotLight>
@@ -260,52 +250,19 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {/* Here i have to call cms to get initial images */}
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-835333117.jpg"
-            name="Moletom Strip Crown"
-            price={204.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2156034489.jpg"
-            name="Moletom Rainbow"
-            price={194.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1969949767.jpg"
-            name="Moletom Orbital Triangle"
-            price={194.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-3473355599.jpg"
-            name="Moletom Has No Way"
-            price={199.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2470263399.jpg"
-            name="Moletom Suply NTC"
-            price={199.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-576326848.jpg"
-            name="Moletom This is NTC"
-            price={199.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-596856701.jpg"
-            name="Moletom Outlined"
-            price={194.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-564417470.jpg"
-            name="Moletom Broken Out"
-            price={199.9}
-          />
-          <CarouselItem
-            source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-13312860.jpg"
-            name="Moletom Helmet"
-            price={189.9}
-          />
+          {products.map(product => {
+            if (product.category_id === 'moletons') {
+              return (
+                <CarouselItem
+                  key={product.id}
+                  source={product.source}
+                  name={product.title}
+                  price={product.price}
+                  slug={product.slug}
+                />
+              );
+            }
+          })}
         </SpotLightCarouselOne>
       </CarouselContainer>
       <SpotLightCarouselOne
@@ -338,51 +295,19 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
       >
         {/* Here i have to call cms to get initial images */}
 
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-310149795.jpg"
-          name="Camiseta Abstract"
-          price={99.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1302968441.jpg"
-          name="Camiseta Geometric Skull"
-          price={99.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2077981964.jpg"
-          name="Camiseta Follow The Vibe"
-          price={94.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1981331846.jpg"
-          name="Camiseta Coat Of Arms"
-          price={94.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2179449156.jpg"
-          name="Camiseta Long Chemical"
-          price={99.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2001613427.jpg"
-          name="Camiseta Palm Trees Paradise"
-          price={199.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-14793564.jpg"
-          name="Camiseta Plank board"
-          price={94.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-805187245.jpg"
-          name="Camiseta One Step"
-          price={94.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-4084554184.jpg"
-          name="Camiseta Long NTCESQC"
-          price={99.9}
-        />
+        {products.map(product => {
+          if (product.category_id === 'camisetas') {
+            return (
+              <CarouselItem
+                key={product.id}
+                source={product.source}
+                name={product.title}
+                price={product.price}
+                slug={product.slug}
+              />
+            );
+          }
+        })}
       </SpotLightCarouselOne>
       <SpotLightCarouselOne
         autoPlay
@@ -412,53 +337,22 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {/* Here i have to call cms to get initial images */}
-
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1800735592.jpg"
-          name="Regata Aberta"
-          price={59.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-3766619370.jpg"
-          name="Regata Nadador"
-          price={59.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-3039593691.jpg"
-          name="Regata Running"
-          price={194.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-223652853.jpg"
-          name="Bermuda Striped"
-          price={79.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-254883889.jpg"
-          name="Bermuda Scratched"
-          price={79.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-691562679.jpg"
-          name="Bermuda Two Collors Embroidery"
-          price={79.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2268683486.jpg"
-          name="Camiseta Dry Fit Stripes"
-          price={59.92}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-345670412.jpg"
-          name="Camiseta Dry Fit"
-          price={199.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1128180370.jpg"
-          name="Bermuda Basic Military"
-          price={79.92}
-        />
+        {products.map(product => {
+          if (
+            product.category_id === 'fitness' ||
+            product.category_id === 'bermudas'
+          ) {
+            return (
+              <CarouselItem
+                key={product.id}
+                source={product.source}
+                name={product.title}
+                price={product.price}
+                slug={product.slug}
+              />
+            );
+          }
+        })}
       </SpotLightCarouselOne>
       <SpotLightCarouselOne
         autoPlay
@@ -488,53 +382,22 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {/* Here i have to call cms to get initial images */}
-
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2234268191.jpg"
-          name="Carteira Urban NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-927134102.png"
-          name="Carteira Street NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1270834314.jpg"
-          name="Meia Street"
-          price={23.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2206056216.jpg"
-          name="Meia Crown"
-          price={23.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-3191358777.jpg"
-          name="Touca Black Letter"
-          price={59.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-759152460.jpg"
-          name="Touca Stripes"
-          price={49.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-295449404.png"
-          name="Carteira Style NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-584560831.jpg"
-          name="Carteira Life Style NTC"
-          price={199.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-4028856904.jpg"
-          name="Meia Não Tem Como"
-          price={21.9}
-        />
+        {products.map(product => {
+          if (
+            product.category_id === 'carteiras' ||
+            product.category_id === 'gorros-e-toucas'
+          ) {
+            return (
+              <CarouselItem
+                key={product.id}
+                source={product.source}
+                name={product.title}
+                price={product.price}
+                slug={product.slug}
+              />
+            );
+          }
+        })}
       </SpotLightCarouselOne>
       <SpotLightCarouselOne
         autoPlay
@@ -564,53 +427,22 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {/* Here i have to call cms to get initial images */}
-
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2234268191.jpg"
-          name="Carteira Urban NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-927134102.png"
-          name="Carteira Street NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-1270834314.jpg"
-          name="Meia Street"
-          price={23.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-2206056216.jpg"
-          name="Meia Crown"
-          price={23.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-3191358777.jpg"
-          name="Touca Black Letter"
-          price={59.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-759152460.jpg"
-          name="Touca Stripes"
-          price={49.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-295449404.png"
-          name="Carteira Style NTC"
-          price={69.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-584560831.jpg"
-          name="Carteira Life Style NTC"
-          price={199.9}
-        />
-        <CarouselItem
-          source="https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/400x600-4028856904.jpg"
-          name="Meia Não Tem Como"
-          price={21.9}
-        />
+        {products.map(product => {
+          if (
+            product.category_id === 'meias' ||
+            product.category_id === 'gorros-e-toucas'
+          ) {
+            return (
+              <CarouselItem
+                key={product.id}
+                source={product.source}
+                name={product.title}
+                price={product.price}
+                slug={product.slug}
+              />
+            );
+          }
+        })}
       </SpotLightCarouselOne>
       <Footer>
         <section className="container">
@@ -668,9 +500,12 @@ const Home: NextPage<HomeProps> = ({ deviceType }) => {
   );
 };
 
-Home.getInitialProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
+  req,
+}) => {
   let userAgent: string;
   let deviceType: string;
+
   if (req) {
     userAgent = req.headers['user-agent'];
   } else {
@@ -685,7 +520,42 @@ Home.getInitialProps = async ({ req }) => {
     deviceType = 'desktop';
   }
 
-  return { deviceType };
+  const bannersResponse = await fetch('http://localhost:3333/banners');
+  const topResponse = await fetch('http://localhost:3333/top');
+  const productsResponse = await fetch('http://localhost:3333/products');
+  const products = await productsResponse.json();
+  const banners = await bannersResponse.json();
+  const top = await topResponse.json();
+
+  return {
+    props: {
+      deviceType,
+      products,
+      banners,
+      top,
+    },
+  };
 };
+
+// export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+//   // const { slug } = context.params;
+
+//   // const product = await client().getByUID('product', String(slug), {});
+
+//   // const products = await client().query([
+//   //   Prismic.Predicates.at('document.type', 'product'),
+//   //   Prismic.Predicates.at('my.product.category', category.id)
+//   // ]);
+
+//   const response = await fetch('http://localhost:3333/banners');
+//   const banners = await response.json();
+
+//   return {
+//     props: {
+//       banners,
+//     },
+//     revalidate: 10,
+//   };
+// };
 
 export default Home;

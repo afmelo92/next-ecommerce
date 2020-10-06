@@ -7,43 +7,37 @@ export const Container = styled.div`
   align-items: center;
   text-align: center;
   padding-bottom: 50px;
+  cursor: pointer;
 
-  a {
-    text-decoration: none;
-    color: #000;
+  img {
+    margin: 0 auto;
+    height: 210px;
+  }
+
+  @media (min-width: 650px) {
     display: flex;
-    flex-direction: column;
 
     img {
+      height: 350px;
       margin: 0 auto;
-      height: 210px;
     }
+  }
 
-    @media (min-width: 650px) {
-      display: flex;
+  h3 {
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 0 0 0;
+    margin: 10px;
+    height: 60px;
+  }
 
-      img {
-        height: 350px;
-        margin: 0 auto;
-      }
-    }
+  h2 {
+    font-weight: 400;
+  }
 
-    h3 {
-      font-weight: 400;
-      font-size: 16px;
-      padding: 10px 0 0 0;
-      margin: 10px;
-      height: 60px;
-    }
-
-    h2 {
-      font-weight: 400;
-    }
-
-    p {
-      font-weight: 300;
-      padding: 10px;
-    }
+  p {
+    font-weight: 300;
+    padding: 10px;
   }
 
   div {

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-expressions */
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import {
   FaFacebook,
   FaInstagram,
@@ -14,14 +14,6 @@ import { Container, Main } from './styles';
 import Menu from '../Menu';
 
 const Header: React.FC = () => {
-  const vestRef = useRef(null);
-  const accRef = useRef(null);
-
-  const handleSubMenu = useCallback(refName => {
-    refName.current.style.display === 'none'
-      ? (refName.current.style.display = 'block')
-      : (refName.current.style.display = 'none');
-  }, []);
   return (
     <Container>
       <Main>
@@ -57,7 +49,7 @@ const Header: React.FC = () => {
             <a href="/">
               <FaUser size={20} />
             </a>
-            <a href="/">
+            <a href="/cart">
               <FiShoppingCart size={25} />
             </a>
           </div>
