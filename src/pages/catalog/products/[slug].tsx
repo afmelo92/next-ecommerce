@@ -7,6 +7,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Container } from '@/styles/pages/Products';
 import CarouselItem from '@/components/CarouselItem';
+import SEO from '@/components/SEO';
+import Link from 'next/link';
 
 interface IProduct {
   id: string;
@@ -29,6 +31,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <Container>
+      <SEO title={product.title} price={product.price} image="/ntc.png" />
       <h1>{router.query.slug}</h1>
       <CarouselItem
         key={product.id}
@@ -37,7 +40,6 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         price={product.price}
         slug={product.slug}
       />
-
       {/* <h1>{PrismicDOM.RichText.asText(product.data.title)}</h1>
 
       <img

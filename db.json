@@ -58,9 +58,9 @@
     { "id": 4, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2135565350.jpg", "description": "fitness"}
   ],
   "top": [
-    { "id": 1, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-1497214986.jpg", "description": "vestuario"},
-    { "id": 2, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2204818397.jpg", "description": "acessorios"},
-    { "id": 3, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-4159844946.jpg", "description": "multimarcas"}
+    { "id": 1, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-1497214986.jpg", "description": "camisetas"},
+    { "id": 2, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-2204818397.jpg", "description": "carteiras"},
+    { "id": 3, "source": "https://braavo-cache.nyc3.cdn.digitaloceanspaces.com/ntc/0x0-4159844946.jpg", "description": "fitness"}
 
   ]
 }

@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run the fake API with JSON server:
+
+```bash
+yarn json-server db.json -p 3333 -w
+```
+
+Then run the development server:
 
 ```bash
 npm run dev

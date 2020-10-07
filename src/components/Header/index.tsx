@@ -12,7 +12,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { FiShoppingCart } from 'react-icons/fi';
 import Link from 'next/link';
 import { Container, Main } from './styles';
-import Menu from '../Menu';
+import Menu from './Menu';
 
 const Header: React.FC = () => {
   return (

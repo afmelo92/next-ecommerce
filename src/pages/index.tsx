@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-expressions */
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import {
@@ -18,7 +18,6 @@ import {
 import Header from '@/components/Header';
 import MobileDetect from 'mobile-detect';
 import {
-  FaCaretDown,
   FaFacebook,
   FaInstagram,
   FaRegCreditCard,
@@ -26,7 +25,7 @@ import {
 } from 'react-icons/fa';
 import { FiLock } from 'react-icons/fi';
 import CarouselItem from '@/components/CarouselItem';
-import { slide as Menu } from 'react-burger-menu';
+import SEO from '@/components/SEO';
 // import Head from 'next/head';
 
 interface HomeProps {
@@ -37,110 +36,10 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ deviceType, products, banners, top }) => {
-  const vestRef = useRef(null);
-  const accRef = useRef(null);
-
-  const handleSubMenu = useCallback(refName => {
-    refName.current.style.display === 'none'
-      ? (refName.current.style.display = 'block')
-      : (refName.current.style.display = 'none');
-  }, []);
-
   return (
     <Container>
-      <Menu>
-        <a id="home" className="menu-item" href="/">
-          <div>
-            <p>Home</p>
-          </div>
-        </a>
-        <button
-          type="button"
-          className="menu-item"
-          onClick={() => handleSubMenu(vestRef)}
-        >
-          <div>
-            <p>Vestuário</p>
-            <FaCaretDown size={20} />
-          </div>
-        </button>
-        <ul ref={vestRef} style={{ display: 'none' }} className="submenu-item">
-          <li>
-            <a href="/">Camisetas</a>
-          </li>
-          <li>
-            <a href="/">Calças</a>
-          </li>
-          <li>
-            <a href="/">Bermudas</a>
-          </li>
-          <li>
-            <a href="/">Fitness</a>
-          </li>
-          <li>
-            <a href="/">Moletons</a>
-          </li>
-          <li>
-            <a href="/">Jaquetas Premium</a>
-          </li>
-          <li>
-            <a href="/">Shorts</a>
-          </li>
-        </ul>
-        <button
-          type="button"
-          id="contact"
-          className="menu-item"
-          onClick={() => handleSubMenu(accRef)}
-        >
-          <div>
-            <p>Acessórios</p>
-            <FaCaretDown size={20} />
-          </div>
-        </button>
-        <ul ref={accRef} style={{ display: 'none' }} className="submenu-item">
-          <li>
-            <a href="/">Bolsas e Mochilas</a>
-          </li>
-          <li>
-            <a href="/">Bonés</a>
-          </li>
-          <li>
-            <a href="/">Canecas</a>
-          </li>
-          <li>
-            <a href="/">Carteiras</a>
-          </li>
-          <li>
-            <a href="/">Chaveiros, Pins e Pulseiras</a>
-          </li>
-          <li>
-            <a href="/">Chinelo</a>
-          </li>
-          <li>
-            <a href="/">Gorros e Toucas</a>
-          </li>
-          <li>
-            <a href="/">Meias</a>
-          </li>
-          <li>
-            <a href="/">Shoulder Bag</a>
-          </li>
-          <li>
-            <a href="/">Utilitarios de celular</a>
-          </li>
-        </ul>
-        <a id="multi" className="menu-item" href="/">
-          <div>
-            <p>Multimarcas</p>
-          </div>
-        </a>
-        <a id="contact" className="menu-item" href="/contact">
-          <div>
-            <p>Contato</p>
-          </div>
-        </a>
-      </Menu>
+      <SEO image="/ntc.png" />
+
       <Header />
 
       <MainCarrousel
